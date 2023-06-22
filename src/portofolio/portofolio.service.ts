@@ -20,7 +20,9 @@ export class PortofolioService {
   }
 
   async findAll(): Promise<Array<Portofolio>> {
-    return await this.portoRepository.find();
+    return await this.portoRepository.find({
+      relations: ['client', 'jenisproject'],
+    });
   }
 
   async findOne(id_portofolio: number): Promise<Portofolio> {
@@ -50,9 +52,14 @@ export class PortofolioService {
     return {
       id_portofolio: id_portofolio,
       nama_instansi: '',
-      jenis_project: '',
       judul_project: '',
+      tahun: porto.tahun,
       isi_project: '',
+      gambar: '',
+      id_client: porto.id_client,
+      id_jenisproject: porto.id_jenisproject,
+      createAt: porto.createAt,
+      updateAt: porto.updateAt,
     };
   }
 }
