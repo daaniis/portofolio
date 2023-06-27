@@ -3,8 +3,11 @@ import { NeedUsService } from './need_us.service';
 import { NeedUs } from './entities/need_us.entity';
 import { CreateNeedUsInput } from './dto/create-need_us.input';
 import { UpdateNeedUsInput } from './dto/update-need_us.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver(() => NeedUs)
+@UseGuards(PublicGuard)
 export class NeedUsResolver {
   constructor(private readonly needUsService: NeedUsService) {}
 

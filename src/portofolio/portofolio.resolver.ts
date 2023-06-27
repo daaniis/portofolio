@@ -3,8 +3,11 @@ import { Portofolio } from './entities/portofolio.entity';
 import { PortofolioService } from './portofolio.service';
 import { CreatePortofolioInput } from './dto/create-portofolio.input';
 import { UpdatePortofolioInput } from './dto/update-portofolio.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver()
+@UseGuards(PublicGuard)
 export class PortofolioResolver {
   constructor(private readonly portofService: PortofolioService) {}
 

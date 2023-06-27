@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   CanActivate,
   ExecutionContext,
@@ -5,13 +6,9 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
-import { rejects } from 'assert';
-import { error } from 'console';
-import { resolve } from 'path';
-import * as Redis from 'redis';
 
 @Injectable()
-export class KritikSaranGuard implements CanActivate {
+export class PublicGuard implements CanActivate {
   // private redisClient: Redis.RedisClientType;
   // constructor() {
   //   this.redisClient = Redis.createClient({
@@ -23,16 +20,16 @@ export class KritikSaranGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const ctx = GqlExecutionContext.create(context);
     const { req } = ctx.getContext();
-    const tokenKey = req.headers?.authorization?.replace('Bearer ', '');
+    const tokenKey = req.headers?.authorization?.replace('Bearer', '');
 
-    console.log(req.headers?.authorization);
+    // console.log(req.headers?.authorization);
 
     if (tokenKey === 'AB') {
       return true;
     }
     throw new UnauthorizedException('Invalid Token');
   }
-
+  
   // async checkTokenRedis(token: string): Promise<boolean> {
   //   return new Promise((resolve, reject) => {
   //     // menyimpan dan mengecek nilai token dengan redis

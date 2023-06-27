@@ -3,8 +3,11 @@ import { JenisBlogService } from './jenis_blog.service';
 import { JenisBlog } from './entities/jenis_blog.entity';
 import { CreateJenisBlogInput } from './dto/create-jenis_blog.input';
 import { UpdateJenisBlogInput } from './dto/update-jenis_blog.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver(() => JenisBlog)
+@UseGuards(PublicGuard)
 export class JenisBlogResolver {
   constructor(private readonly jenisBlogService: JenisBlogService) {}
 

@@ -3,8 +3,11 @@ import { BlogService } from './blog.service';
 import { Blog } from './entities/blog.entity';
 import { CreateBlogInput } from './dto/create-blog.input';
 import { UpdateBlogInput } from './dto/update-blog.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver(() => Blog)
+@UseGuards(PublicGuard)
 export class BlogResolver {
   constructor(private readonly blogService: BlogService) {}
 

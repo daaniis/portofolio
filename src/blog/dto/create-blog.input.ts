@@ -3,10 +3,6 @@ import { IsNotEmpty } from 'class-validator';
 
 @InputType()
 export class CreateBlogInput {
-  // @Field(() => String)
-  // @IsNotEmpty()
-  // jenis_blog: string;
-
   @Field(() => String)
   @IsNotEmpty()
   judul: string;

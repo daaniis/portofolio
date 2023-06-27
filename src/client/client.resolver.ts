@@ -3,8 +3,11 @@ import { ClientService } from './client.service';
 import { Client } from './entities/client.entity';
 import { CreateClientInput } from './dto/create-client.input';
 import { UpdateClientInput } from './dto/update-client.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver(() => Client)
+@UseGuards(PublicGuard)
 export class ClientResolver {
   constructor(private readonly clientService: ClientService) {}
 

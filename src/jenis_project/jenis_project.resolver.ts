@@ -3,8 +3,11 @@ import { JenisProjectService } from './jenis_project.service';
 import { JenisProject } from './entities/jenis_project.entity';
 import { CreateJenisProjectInput } from './dto/create-jenis_project.input';
 import { UpdateJenisProjectInput } from './dto/update-jenis_project.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver(() => JenisProject)
+@UseGuards(PublicGuard)
 export class JenisProjectResolver {
   constructor(private readonly jenisProjectService: JenisProjectService) {}
 

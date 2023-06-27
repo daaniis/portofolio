@@ -4,8 +4,8 @@ import { KritikSaran } from './entities/kritik_saran.entity';
 import { CreateKritikSaranInput } from './dto/create-kritik_saran.input';
 import { UpdateKritikSaranInput } from './dto/update-kritik_saran.input';
 import { UseGuards } from '@nestjs/common';
-import { KritikSaranGuard } from './kritik_saran.guard';
-
+// import { KritikSaranGuard } from './kritik_saran.guard';
+import { PublicGuard } from 'src/public.guard';
 @Resolver(() => KritikSaran)
 export class KritikSaranResolver {
   constructor(private readonly kritikSaranService: KritikSaranService) {}
@@ -19,7 +19,7 @@ export class KritikSaranResolver {
   }
 
   @Query(() => [KritikSaran], { name: 'kritikSaranx' })
-  @UseGuards(KritikSaranGuard)
+  @UseGuards(PublicGuard)
   findAll() {
     return this.kritikSaranService.findAll();
   }

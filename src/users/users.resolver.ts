@@ -4,8 +4,11 @@ import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { LoginUserInput } from './entities/login-user.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver(() => User)
+@UseGuards(PublicGuard)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 

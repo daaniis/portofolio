@@ -3,8 +3,11 @@ import { DivisiService } from './divisi.service';
 import { Divisi } from './entities/divisi.entity';
 import { CreateDivisiInput } from './dto/create-divisi.input';
 import { UpdateDivisiInput } from './dto/update-divisi.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver(() => Divisi)
+@UseGuards(PublicGuard)
 export class DivisiResolver {
   constructor(private readonly divisiService: DivisiService) {}
 

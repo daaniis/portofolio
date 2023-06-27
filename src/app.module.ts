@@ -25,7 +25,8 @@ import { JenisBlog } from './jenis_blog/entities/jenis_blog.entity';
 import { JenisProjectModule } from './jenis_project/jenis_project.module';
 import { JenisProject } from './jenis_project/entities/jenis_project.entity';
 import { APP_GUARD } from '@nestjs/core';
-import { KritikSaranGuard } from './kritik_saran/kritik_saran.guard';
+import { PublicGuard } from './public.guard';
+// import { RedisModule } from 'nestjs-redis';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -57,10 +58,8 @@ import { KritikSaranGuard } from './kritik_saran/kritik_saran.guard';
       synchronize: true,
       autoLoadEntities: true,
     }),
-    // JwtModule.register({
-    //   secret: 'secret',
-    //   signOptions: { expiresIn: '60s' },
-    // }),
+    // RedisModule.forRootAsync({
+    // })
     UsersModule,
     PortofolioModule,
     BlogModule,
@@ -77,7 +76,7 @@ import { KritikSaranGuard } from './kritik_saran/kritik_saran.guard';
     AppService,
     {
       provide: APP_GUARD,
-      useClass: KritikSaranGuard,
+      useClass: PublicGuard,
     },
   ],
 })

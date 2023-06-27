@@ -3,8 +3,11 @@ import { KaryawanService } from './karyawan.service';
 import { Karyawan } from './entities/karyawan.entity';
 import { CreateKaryawanInput } from './dto/create-karyawan.input';
 import { UpdateKaryawanInput } from './dto/update-karyawan.input';
+import { UseGuards } from '@nestjs/common';
+import { PublicGuard } from 'src/public.guard';
 
 @Resolver(() => Karyawan)
+@UseGuards(PublicGuard)
 export class KaryawanResolver {
   constructor(private readonly karyawanService: KaryawanService) {}
 
