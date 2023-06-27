@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { LoginUserInput } from './entities/login-user.input';
+import { ConfigService } from 'src/config/config.service';
 
 @Injectable()
 export class UsersService {
@@ -15,6 +16,7 @@ export class UsersService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private jwtService: JwtService,
+    private readonly configService: ConfigService,
   ) {}
 
   async create(createUserInput: CreateUserInput): Promise<User> {
@@ -51,8 +53,8 @@ export class UsersService {
         userId: result.userId,
         username: result.username,
       }, {
-        secret: "asdfghjkl",
-        expiresIn: '60s'
+        secret: this.configService.JWT_SECRET,
+        expiresIn: this.configService.JWT_EXPIRED_IN,
       },
       );
       result.token = jwt;

@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { fileURLToPath } from 'url';
 
 @Entity({ name: 'app_blog' })
 @ObjectType()
@@ -15,15 +16,6 @@ export class Blog {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
   id_blog: number;
-
-  // @Column()
-  // @Field(() => String)
-  // @IsNotEmpty()
-  // jenis_blog: string;
-
-  // @Column({ type: 'date' })
-  // @Field(() => Date)
-  // tanggal: Date;
 
   @Column()
   @Field(() => String)

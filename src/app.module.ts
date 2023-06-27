@@ -27,6 +27,10 @@ import { JenisProject } from './jenis_project/entities/jenis_project.entity';
 import { APP_GUARD } from '@nestjs/core';
 import { PublicGuard } from './public.guard';
 // import { RedisModule } from 'nestjs-redis';
+import { ConfigModule } from './config/config.module';
+import { ConfigService } from './config/config.service';
+import { config } from 'process';
+
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -36,27 +40,52 @@ import { PublicGuard } from './public.guard';
       },
       sortSchema: true,
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'db.ydpqavxvgfrmcfbkcjai.supabase.co',
-      port: 5432,
-      username: 'postgres',
-      password: 'kTck3DKIQbxGLZTC',
-      database: 'postgres',
-      entities: [
-        User,
-        Portofolio,
-        Blog,
-        Client,
-        Divisi,
-        KritikSaran,
-        NeedUs,
-        Karyawan,
-        JenisBlog,
-        JenisProject,
-      ],
-      synchronize: true,
-      autoLoadEntities: true,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => {
+        return {
+          name: 'default',
+          type: 'postgres',
+          host: config.DB_HOST,
+          port: config.DB_PORT,
+          username: config.DB_USERNAME,
+          password: config.DB_PASSWORD,
+          database: config.DB_DATABASE,
+          synchronize: true,
+          autoLoadEntities: true,
+          entities: [
+            User,
+            Portofolio,
+            Blog,
+            Client,
+            Divisi,
+            KritikSaran,
+            NeedUs,
+            Karyawan,
+            JenisBlog,
+            JenisProject,
+          ],
+        };
+      },
+      // type: 'postgres',
+      // host: 'db.ydpqavxvgfrmcfbkcjai.supabase.co',
+      // port: 5432,
+      // username: 'postgres',
+      // password: 'kTck3DKIQbxGLZTC',
+      // database: 'postgres',
+      // entities: [
+      //   User,
+      //   Portofolio,
+      //   Blog,
+      //   Client,
+      //   Divisi,
+      //   KritikSaran,
+      //   NeedUs,
+      //   Karyawan,
+      //   JenisBlog,
+      //   JenisProject,
+      // ],
     }),
     // RedisModule.forRootAsync({
     // })
@@ -70,6 +99,7 @@ import { PublicGuard } from './public.guard';
     KaryawanModule,
     JenisBlogModule,
     JenisProjectModule,
+    ConfigModule,
   ],
   controllers: [AppController],
   providers: [

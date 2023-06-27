@@ -4,20 +4,20 @@ import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { LoginUserInput } from './entities/login-user.input';
-import { UseGuards } from '@nestjs/common';
-import { PublicGuard } from 'src/public.guard';
+import { Public } from 'src/public.guard';
 
 @Resolver(() => User)
-@UseGuards(PublicGuard)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
   @Mutation(() => User)
+  @Public()
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
     return this.usersService.create(createUserInput);
   }
 
   @Mutation(() => User)
+  @Public()
   login(@Args('loginUserInput') user: LoginUserInput): Promise<User> {
     return this.usersService.login(user);
   }
