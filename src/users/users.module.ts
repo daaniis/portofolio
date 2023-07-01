@@ -5,14 +5,26 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { User } from './entities/user.entity';
 import { ConfigModule } from 'src/config/config.module';
+import { ConfigService } from 'src/config/config.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
+    // JwtModule.registerAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: (config: ConfigService) => {
+    //     return {
+    //       secret: config.JWT_SECRET,
+    //       signOptions: { expiresIn: config.JWT_EXPIRED_IN },
+    //       global: true,
+    //     };
+    //   },
+    // }),
     JwtModule.register({
       global: true,
-      secret: 'jhqwufkqw',
-      signOptions: { expiresIn: '60s' },
+      secret: 'asdfghjkl',
+      signOptions: { expiresIn: '1d' },
     }),
     ConfigModule,
   ],

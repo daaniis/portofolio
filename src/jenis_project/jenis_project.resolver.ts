@@ -19,7 +19,7 @@ export class JenisProjectResolver {
     return this.jenisProjectService.create(createJenisProjectInput);
   }
 
-  @Query(() => [JenisProject], { name: 'jenisProjects' })
+  @Query(() => [JenisProject], { name: 'queryJenisproject' })
   findAll() {
     return this.jenisProjectService.findAll();
   }

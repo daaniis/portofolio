@@ -18,7 +18,7 @@ export class KaryawanResolver {
     return this.karyawanService.create(createKaryawanInput);
   }
 
-  @Query(() => [Karyawan], { name: 'karyawans' })
+  @Query(() => [Karyawan], { name: 'queryKaryawan' })
   findAll() {
     return this.karyawanService.findAll();
   }

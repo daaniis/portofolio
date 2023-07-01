@@ -26,10 +26,8 @@ import { JenisProjectModule } from './jenis_project/jenis_project.module';
 import { JenisProject } from './jenis_project/entities/jenis_project.entity';
 import { APP_GUARD } from '@nestjs/core';
 import { PublicGuard } from './public.guard';
-// import { RedisModule } from 'nestjs-redis';
 import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
-import { config } from 'process';
 
 @Module({
   imports: [
@@ -68,24 +66,6 @@ import { config } from 'process';
           ],
         };
       },
-      // type: 'postgres',
-      // host: 'db.ydpqavxvgfrmcfbkcjai.supabase.co',
-      // port: 5432,
-      // username: 'postgres',
-      // password: 'kTck3DKIQbxGLZTC',
-      // database: 'postgres',
-      // entities: [
-      //   User,
-      //   Portofolio,
-      //   Blog,
-      //   Client,
-      //   Divisi,
-      //   KritikSaran,
-      //   NeedUs,
-      //   Karyawan,
-      //   JenisBlog,
-      //   JenisProject,
-      // ],
     }),
     // RedisModule.forRootAsync({
     // })

@@ -18,7 +18,7 @@ export class PortofolioResolver {
     return this.portofService.create(createPortofolioInput);
   }
 
-  @Query(() => [Portofolio], { name: 'portofolios' })
+  @Query(() => [Portofolio], { name: 'queryPortofolios' })
   findAll() {
     return this.portofService.findAll();
   }

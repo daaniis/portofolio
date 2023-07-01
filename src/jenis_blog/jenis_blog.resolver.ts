@@ -18,7 +18,7 @@ export class JenisBlogResolver {
     return this.jenisBlogService.create(createJenisBlogInput);
   }
 
-  @Query(() => [JenisBlog], { name: 'jenisBlogs' })
+  @Query(() => [JenisBlog], { name: 'queryJenisblog' })
   findAll() {
     return this.jenisBlogService.findAll();
   }

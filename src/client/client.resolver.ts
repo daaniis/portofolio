@@ -18,7 +18,7 @@ export class ClientResolver {
     return this.clientService.create(createClientInput);
   }
 
-  @Query(() => [Client], { name: 'clients' })
+  @Query(() => [Client], { name: 'queryClient' })
   findAll() {
     return this.clientService.findAll();
   }

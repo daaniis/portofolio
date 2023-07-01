@@ -18,7 +18,7 @@ export class DivisiResolver {
     return this.divisiService.create(createDivisiInput);
   }
 
-  @Query(() => [Divisi], { name: 'divisix' })
+  @Query(() => [Divisi], { name: 'queryDivisi' })
   findAll() {
     return this.divisiService.findAll();
   }

@@ -22,9 +22,6 @@ export class Divisi {
   @IsNotEmpty()
   nama_divisi: string;
 
-  // @OneToMany(() => Karyawan, (karyawan) => karyawan.divisi)
-  // karyawan = Karyawan;
-
   @OneToMany(() => Karyawan, (karyawan) => karyawan.divisi)
   @JoinColumn()
   @Field(() => [Karyawan])

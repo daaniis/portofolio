@@ -22,7 +22,7 @@ export class UsersResolver {
     return this.usersService.login(user);
   }
 
-  @Query(() => [User], { name: 'users' })
+  @Query(() => [User], { name: 'queryUsers' })
   findAll() {
     return this.usersService.findAll();
   }

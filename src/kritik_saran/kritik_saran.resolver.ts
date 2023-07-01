@@ -18,7 +18,7 @@ export class KritikSaranResolver {
     return this.kritikSaranService.create(createKritikSaranInput);
   }
 
-  @Query(() => [KritikSaran], { name: 'kritikSaranx' })
+  @Query(() => [KritikSaran], { name: 'queryKritiksaran' })
   @UseGuards(PublicGuard)
   findAll() {
     return this.kritikSaranService.findAll();

@@ -16,7 +16,7 @@ export class BlogResolver {
     return this.blogService.create(createBlogInput);
   }
 
-  @Query(() => [Blog], { name: 'blogs' })
+  @Query(() => [Blog], { name: 'queryBlogs' })
   findAll() {
     return this.blogService.findAll();
   }

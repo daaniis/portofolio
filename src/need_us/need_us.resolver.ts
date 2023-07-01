@@ -18,7 +18,7 @@ export class NeedUsResolver {
     return this.needUsService.create(createNeedUsInput);
   }
 
-  @Query(() => [NeedUs], { name: 'needUsx' })
+  @Query(() => [NeedUs], { name: 'queryNeedus' })
   findAll() {
     return this.needUsService.findAll();
   }
