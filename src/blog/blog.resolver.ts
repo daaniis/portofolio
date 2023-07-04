@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { BlogService } from './blog.service';
 import { Blog } from './entities/blog.entity';
 import { CreateBlogInput } from './dto/create-blog.input';
@@ -16,6 +16,15 @@ export class BlogResolver {
     return this.blogService.create(createBlogInput);
   }
 
+  @Query(() => Blog)
+  getBlog(
+    @Args('id_blog', { type: () => Int }) id_blog: number,
+  ): Promise<Blog> {
+    const blog = this.blogService.getBlogbyID(id_blog);
+    this.blogService.incrementVisitor(id_blog);
+    return blog;
+  }
+
   @Query(() => [Blog], { name: 'queryBlogs' })
   findAll() {
     return this.blogService.findAll();
@@ -28,7 +37,10 @@ export class BlogResolver {
 
   @Mutation(() => Blog)
   updateBlog(@Args('updateBlogInput') updateBlogInput: UpdateBlogInput) {
-    return this.blogService.update(updateBlogInput.id_blog, updateBlogInput);
+    return this.blogService.update(
+      updateBlogInput.id_jenisblog,
+      updateBlogInput,
+    );
   }
 
   @Mutation(() => Blog)

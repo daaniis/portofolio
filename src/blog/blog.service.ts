@@ -17,6 +17,18 @@ export class BlogService {
     return await this.blogRepository.save(blog);
   }
 
+  async getBlogbyID(id_blog: number): Promise<Blog> {
+    return this.blogRepository.findOne({ where: { id_blog } });
+  }
+
+  async incrementVisitor(id_blog: number): Promise<void> {
+    const blog = await this.blogRepository.findOne({ where: { id_blog } });
+    if (blog) {
+      blog.jumlah_pengunjung += 1;
+      await this.blogRepository.save(blog);
+    }
+  }
+
   async findAll(): Promise<Array<Blog>> {
     return await this.blogRepository.find({ relations: ['jenisblog'] });
   }

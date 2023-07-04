@@ -37,6 +37,10 @@ export class Blog {
   @Field(() => String, { description: 'merupakan gambar project' })
   gambar: string;
 
+  @Column({ default: 0 })
+  @Field(() => Int)
+  jumlah_pengunjung?: number;
+
   @Column()
   @Field(() => Int)
   id_jenisblog: number;
