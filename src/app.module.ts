@@ -28,6 +28,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { PublicGuard } from './public.guard';
 import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
+import { UploadController } from './controllers/upload.controller';
 
 @Module({
   imports: [
@@ -81,7 +82,7 @@ import { ConfigService } from './config/config.service';
     JenisProjectModule,
     ConfigModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, UploadController],
   providers: [
     AppService,
     {
